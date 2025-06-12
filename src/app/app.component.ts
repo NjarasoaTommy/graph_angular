@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { FirstGraphComponent } from './first-graph/first-graph.component';
-
+import { MenuComponent } from './menu/menu.component';
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
-  imports: [FirstGraphComponent],
+  imports: [MenuComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  title = 'best_deepseek';
-}
+export class AppComponent {}
