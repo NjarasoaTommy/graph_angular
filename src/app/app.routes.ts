@@ -13,4 +13,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./arrow/arrow.component').then((m) => m.ArrowComponent),
   },
+  {
+    path: 'ford/min',
+    loadComponent: () =>
+      import('./ford-min/ford-min.component').then((m) => m.FordMinComponent),
+  },
 ];
