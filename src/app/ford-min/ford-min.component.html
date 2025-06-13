@@ -1,1 +1,11 @@
-<p>ford-min works!</p>
+<div class="container">
+  <h1 class="text-primary">Optimale routes(FORD)</h1>
+  <button class="btn btn-success" (click)="addNode()">Add node</button>
+  <ngx-graph
+    [view]="[900, 900]"
+    layout="dagre"
+    [nodes]="my_nodes"
+    [links]="my_links"
+  >
+  </ngx-graph>
+</div>
