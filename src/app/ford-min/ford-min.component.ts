@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { NgxGraphModule, Node, Edge } from '@swimlane/ngx-graph';
+import { NgxGraphModule, Node, Edge, Layout } from '@swimlane/ngx-graph';
 import { Subject, Subscription } from 'rxjs';
 
 @Component({
@@ -9,6 +9,8 @@ import { Subject, Subscription } from 'rxjs';
   styleUrl: './ford-min.component.css',
 })
 export class FordMinComponent implements OnInit {
+  nodePositions: { [nodeId: string]: { x: number; y: number } } = {};
+
   my_links: Edge[] = [];
   my_nodes: Node[] = [];
   my_links_subject = new Subject<Edge[]>();
@@ -16,6 +18,8 @@ export class FordMinComponent implements OnInit {
 
   my_nodes_subscription: Subscription | null = null;
   my_links_subscription: Subscription | null = null;
+
+  layout: string | Layout = 'dagre';
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -34,6 +38,25 @@ export class FordMinComponent implements OnInit {
     this.addNode('Node 1');
     this.addNode('Node 2');
     this.addLink('1', '2');
+  }
+
+  onSelect(event: any) {
+    console.log('=======================');
+    console.log(event);
+    console.log('=======================');
+    const node = this.my_nodes.find((node) => {
+      return node.id == event.id;
+    });
+    if (node) {
+      node.position = {
+        x: event.position.x,
+        y: event.position.y,
+      };
+      console.log(node);
+      console.log(node.position);
+      this.layout = null;
+      //this.emitNodeSubject();
+    }
   }
 
   emitNodeSubject() {
