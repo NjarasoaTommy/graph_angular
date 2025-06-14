@@ -3,9 +3,10 @@
   <button class="btn btn-success" (click)="addNode()">Add node</button>
   <ngx-graph
     [view]="[900, 900]"
-    layout="dagre"
+    [layout]="layout"
     [nodes]="my_nodes"
     [links]="my_links"
+    (select)="onSelect($event)"
   >
   </ngx-graph>
 </div>
